@@ -1,0 +1,6 @@
+[submodule "gamescout_backend"]
+	path = gamescout_backend
+	url = https://github.com/ty4g1/gamescout_backend.git
+[submodule "gamescout_microservice"]
+	path = gamescout_microservice
+	url = https://github.com/ty4g1/gamescout_microservice.git
