@@ -16,9 +16,12 @@ services:
       - 8080:8080
     environment:
       - SERVER_ADDRESS=0.0.0.0:8080
-      - API_KEY=
       - DATABASE_URL=postgres://postgres:mysecretpassword@db:5432/gamescoutdb
-      - MICROSERVICE_URL=http://microservice:8000
+      - MICROSERVICE_URL=http://microservice:8000/vectorize
+      - STEAM_SPY_PAGES=5
+      - STEAM_SPY_URL_FORMAT=https://steamspy.com/api.php?request=all&page=%d
+      - STEAM_SPY_DETAILS_FORMAT=https://steamspy.com/api.php?request=appdetails&appid=%d
+      - STEAM_API_DETAILS_FORMAT=https://store.steampowered.com/api/appdetails?cc=us&appids=%d
     depends_on:
       db:
         condition: service_healthy
@@ -33,9 +36,9 @@ services:
       - 8000:8000
     healthcheck:
       test: curl -f http://localhost:8000/health || exit 1
-      interval: 30s
+      interval: 5m
       timeout: 10s
-      retries: 1
+      retries: 5
       start_period: 30s
   db:
     image: postgres
