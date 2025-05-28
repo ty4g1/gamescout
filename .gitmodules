@@ -4,3 +4,6 @@
 [submodule "gamescout_microservice"]
 	path = gamescout_microservice
 	url = https://github.com/ty4g1/gamescout_microservice.git
+[submodule "gamescout_frontend"]
+	path = gamescout_frontend
+	url = https://github.com/ty4g1/gamescout_frontend.git
