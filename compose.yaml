@@ -12,6 +12,7 @@ services:
     build:
       context: ./gamescout_backend
       target: final
+    restart: unless-stopped
     ports:
       - 8080:8080
     environment:
@@ -22,6 +23,12 @@ services:
       - STEAM_SPY_URL_FORMAT=https://steamspy.com/api.php?request=all&page=%d
       - STEAM_SPY_DETAILS_FORMAT=https://steamspy.com/api.php?request=appdetails&appid=%d
       - STEAM_API_DETAILS_FORMAT=https://store.steampowered.com/api/appdetails?cc=us&appids=%d
+    healthcheck:
+      test: curl -f http://localhost:8080/health || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+      start_period: 30s
     depends_on:
       db:
         condition: service_healthy
@@ -30,6 +37,7 @@ services:
   microservice:
     build:
       context: ./gamescout_microservice
+    restart: unless-stopped
     volumes:
       - ./word2vec/GoogleNews-vectors-negative300.bin:/app/app/word2vec/GoogleNews-vectors-negative300.bin
     ports:
@@ -59,6 +67,19 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  frontend:
+    build:
+      context: ./gamescout_frontend
+      target: final
+    restart: unless-stopped
+    ports:
+      - 4173:4173
+    environment:
+      - NODE_ENV=production
+      - VITE_BASE_URL=http://localhost:8080
+    depends_on:
+      backend:
+        condition: service_healthy
 volumes:
   db-data:
 secrets:
