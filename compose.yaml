@@ -18,7 +18,7 @@ services:
       - SERVER_ADDRESS=0.0.0.0:8080
       - DATABASE_URL=postgres://postgres:mysecretpassword@db:5432/gamescoutdb
       - MICROSERVICE_URL=http://microservice:8000/vectorize
-      - STEAM_SPY_PAGES=5
+      - STEAM_SPY_PAGES=10
       - STEAM_SPY_URL_FORMAT=https://steamspy.com/api.php?request=all&page=%d
       - STEAM_SPY_DETAILS_FORMAT=https://steamspy.com/api.php?request=appdetails&appid=%d
       - STEAM_API_DETAILS_FORMAT=https://store.steampowered.com/api/appdetails?cc=us&appids=%d

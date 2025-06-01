@@ -1,6 +1,5 @@
 CREATE TABLE Users (
     cookie_id TEXT PRIMARY KEY,
-    swipe_history JSONB,
-    wishlist JSONB,
+    swipe_history INT[],
     preference_vector FLOAT[]
 );
