@@ -39,7 +39,7 @@ services:
       context: ./gamescout_microservice
     restart: unless-stopped
     volumes:
-      - ./word2vec/GoogleNews-vectors-negative300.bin:/app/app/word2vec/GoogleNews-vectors-negative300.bin
+      - ./word2vec:/app/app/word2vec
     ports:
       - 8000:8000
     healthcheck:
