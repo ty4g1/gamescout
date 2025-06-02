@@ -38,8 +38,6 @@ services:
     build:
       context: ./gamescout_microservice
     restart: unless-stopped
-    volumes:
-      - ./word2vec:/app/app/word2vec
     ports:
       - 8000:8000
     healthcheck:
@@ -76,7 +74,7 @@ services:
       - 4173:4173
     environment:
       - NODE_ENV=production
-      - VITE_BASE_URL=http://localhost:8080
+      - VITE_BASE_URL=https://violet-ads-learn.loca.lt
     depends_on:
       backend:
         condition: service_healthy
