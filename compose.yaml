@@ -74,7 +74,6 @@ services:
       - 4173:4173
     environment:
       - NODE_ENV=production
-      - VITE_BASE_URL=https://violet-ads-learn.loca.lt
     depends_on:
       backend:
         condition: service_healthy
